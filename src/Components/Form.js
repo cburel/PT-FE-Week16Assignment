@@ -1,21 +1,33 @@
 import React, { useState } from "react";
-import CreateTextField from "./CreateTextField";
-import CreateButton from "./CreateButton";
-import DeleteTextField from "./DeleteTextField";
-import DeleteButton from "./DeleteButton";
-import UpdateTextField from "./UpdateTextField";
-import UpdateButton from "./UpdateButton";
 
-export default function Form() {
+export default function Form({ setDescription }) {
+
+    const [descriptionValue, setDescriptionValue] = useState("hello")
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setDescription(descriptionValue);
+    }
+
     return (
         <form>
-            <CreateTextField />
-            <CreateButton />
-            <DeleteTextField />
-            <DeleteButton />
+            <input
+                type="text"
+                placeholder="Create an item"
+            />
+            <button onClick={handleSubmit}>Create</button>
+            <input
+                type="text"
+                placeholder="Delete an item"
+            />
+            <button onClick={handleSubmit}>Delete</button>
             <p></p>
-            <UpdateTextField />
-            <UpdateButton />
+            <input
+                type="text"
+                placeholder="Update description"
+                onChange={(event) => setDescriptionValue(event.target.value)}
+            />
+            <button onClick={handleSubmit}>Update</button>
         </form>
     )
 }
