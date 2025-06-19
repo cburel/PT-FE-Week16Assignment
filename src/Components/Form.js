@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 
-export default function Form({ setDescription }) {
+export default function Form({ setDescription, onAddItem, onDeleteItem }) {
 
     const [descriptionValue, setDescriptionValue] = useState("hello")
 
@@ -9,18 +9,29 @@ export default function Form({ setDescription }) {
         setDescription(descriptionValue);
     }
 
+    const [inputValue, setInputValue] = useState('');
+
+    const handleAddItem = () => {
+        if (inputValue.trim()) {
+            onAddItem(inputValue);
+            setInputValue('');
+        }
+    }
+
+    const handleDeleteItem = (id) => {
+        onDeleteItem(id);
+    }
+
     return (
         <form>
             <input
                 type="text"
                 placeholder="Create an item"
+                value={inputValue}
+                onChange={(event) => setInputValue(event.target.value)}
             />
-            <button onClick={handleSubmit}>Create</button>
-            <input
-                type="text"
-                placeholder="Delete an item"
-            />
-            <button onClick={handleSubmit}>Delete</button>
+            <button type="button" onClick={handleAddItem}>Create</button>
+
             <p></p>
             <input
                 type="text"

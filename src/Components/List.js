@@ -1,12 +1,8 @@
-let items = [
-    { id: 1, name: 'item1' },
-    { id: 2, name: 'item2' },
-    { id: 3, name: 'item3' }
-];
-
-export default function List({ description }) {
+export default function List({ description, items, onDeleteItem }) {
     const listItems = items.map(item =>
-        <li key={item.id}>{item.name}</li>
+        <li key={item.id}>{item.name} (ID: {item.id})
+            <button type="button" onClick={() => onDeleteItem(item.id)}>Delete</button>
+        </li>
     );
     return (
         <>
