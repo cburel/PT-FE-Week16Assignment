@@ -1,7 +1,9 @@
+import './Styles.css'
+
 export default function List({ description, items, onDeleteItem }) {
     const listItems = items.map(item =>
         <li key={item.id}>{item.name} (ID: {item.id})
-            <button type="button" onClick={() => onDeleteItem(item.id)}>Delete</button>
+            <button className="delete-btn" type="button" onClick={() => onDeleteItem(item.id)}>Delete</button>
         </li>
     );
     return (

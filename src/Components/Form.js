@@ -1,12 +1,15 @@
 import React, { use, useState } from "react";
+import './Styles.css'
 
 export default function Form({ setDescription, onAddItem, onDeleteItem }) {
 
-    const [descriptionValue, setDescriptionValue] = useState("hello")
+    const [descriptionValue, setDescriptionValue] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setDescription(descriptionValue);
+        if (descriptionValue.trim()) {
+            setDescription(descriptionValue);
+        }
     }
 
     const [inputValue, setInputValue] = useState('');
@@ -14,12 +17,7 @@ export default function Form({ setDescription, onAddItem, onDeleteItem }) {
     const handleAddItem = () => {
         if (inputValue.trim()) {
             onAddItem(inputValue);
-            setInputValue('');
         }
-    }
-
-    const handleDeleteItem = (id) => {
-        onDeleteItem(id);
     }
 
     return (
@@ -30,7 +28,7 @@ export default function Form({ setDescription, onAddItem, onDeleteItem }) {
                 value={inputValue}
                 onChange={(event) => setInputValue(event.target.value)}
             />
-            <button type="button" onClick={handleAddItem}>Create</button>
+            <button className="create-btn" type="button" onClick={handleAddItem}>Create</button>
 
             <p></p>
             <input
@@ -38,7 +36,7 @@ export default function Form({ setDescription, onAddItem, onDeleteItem }) {
                 placeholder="Update description"
                 onChange={(event) => setDescriptionValue(event.target.value)}
             />
-            <button onClick={handleSubmit}>Update</button>
+            <button className="update-btn" onClick={handleSubmit}>Update</button>
         </form>
     )
 }

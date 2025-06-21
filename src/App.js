@@ -24,9 +24,12 @@ export default function App() {
   const [description, setDescription] = useState("Hello, World!");
 
   return (
-    <div>
-      <Form setDescription={setDescription} onAddItem={addItem} onDeleteItem={deleteItem} />
-      <List description={description} items={items} onDeleteItem={deleteItem} />
-    </div>
+    <>
+      <div className='upper'>
+        <h1>Item Tracker</h1>
+        <Form setDescription={setDescription} onAddItem={addItem} onDeleteItem={deleteItem} />
+        <List description={description} items={items} onDeleteItem={deleteItem} />
+      </div>
+    </>
   );
 }
